@@ -33,13 +33,13 @@ export default function RegistrationSection() {
                         </div>
                     ))}
                 </div>
-                {/* <div className="mt-8 flex flex-col items-center gap-4" data-reveal>
+                <div className="mt-8 flex flex-col items-center gap-4" data-reveal>
                     {link ? (
                         <a href={link} className="pulse-cta inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold shadow-lg bg-accent hover:brightness-110 text-white transition">{text}</a>
                     ) : (
                         <button disabled className="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold shadow-lg bg-slate-600 text-white opacity-70 cursor-not-allowed transition">{text}</button>
-                    )} */}
-                    {/* <div className="w-full max-w-xl rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+                    )} 
+                     <div className="w-full max-w-xl rounded-xl border border-slate-800 bg-slate-900/60 p-4">
                         <div className="flex items-center justify-between text-slate-300">
                             <span className="text-sm">Simulate current registrations</span>
                             <span className="text-sm font-semibold">{registrationCount} / 100</span>
@@ -47,7 +47,7 @@ export default function RegistrationSection() {
                         <input type="range" min="0" max="120" value={registrationCount} onChange={(e) => setRegistrationCount(Number(e.target.value))} className="mt-3 w-full accent-violet-500" />
                         {registrationCount >= 100 ? (<p className="mt-2 text-sm text-rose-400">Capacity reached. Registration closed.</p>) : null}
                     </div>
-                </div> */}
+                </div> 
             </Container>
         </Section>
     );
