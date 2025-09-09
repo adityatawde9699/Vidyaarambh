@@ -1,4 +1,7 @@
 import React from 'react';
+import prize from '../assets/prize.png';
+// Assuming the placeholder is also in assets, import it for consistency.
+// import prizePlaceholder from '../assets/prize-placeholder-1.png'; 
 
 function Section({ id, className = '', children }) { return <section id={id} className={["relative py-16 md:py-24", className].join(' ')} data-reveal>{children}</section> }
 function Container({ className = '', children }) { return <div className={["mx-auto w-full max-w-7xl px-6", className].join(' ')}>{children}</div> }
@@ -13,9 +16,11 @@ function Heading({ title, subtitle }) {
 
 export default function PrizesSection() {
     const items = [
-        { text: '🏆 Two (2) Prizes for First-Year Students', img: '/images/prize-placeholder-1.png' },
-        { text: '🏆 One (1) Prize for Second-Year Students', img: '/images/prize-placeholder-1.png' },
-        { text: '🏆 One (1) Prize for Third-Year Students', img: '/images/prize-placeholder-1.png' },
+        // FIX: Use the imported 'prize' variable directly.
+        { text: '🏆 Two (2) Prizes for First-Year Students', img: prize },
+        // FIX: Use the imported placeholder for consistency and reliability.
+        { text: '🏆 One (1) Prize for Second-Year Students', img: prize },
+        { text: '🏆 One (1) Prize for Third-Year Students', img: prize },
     ];
     return (
         <Section id="prizes" className="scroll-mt-24">
@@ -34,4 +39,4 @@ export default function PrizesSection() {
             </Container>
         </Section>
     );
-} 
+}
