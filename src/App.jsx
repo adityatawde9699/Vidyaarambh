@@ -24,9 +24,10 @@ export default function App() {
             <Header />
             <main>
                 <HeroSection />
+                <MentorsSection />
                 <AboutSection />
                 <SessionsSection />
-                <MentorsSection />
+                
                 <PrizesSection />
                 <PerksSection />
                 <RegistrationSection />

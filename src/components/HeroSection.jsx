@@ -7,7 +7,7 @@ function Container({ className = '', children }) { return <div className={["mx-a
 export default function HeroSection() {
     const scrollToRegister = (e) => { e.preventDefault(); document.querySelector('#register')?.scrollIntoView({ behavior: 'smooth' }); };
 
-    const fullTitle = 'Vidyaarambh';
+    const fullTitle = 'VidyaArambh';
     const fullSubtitle = 'From Code to Cloud: Build and Deploy Your First Machine Learning App.';
     const [typedTitle, setTypedTitle] = useState('');
     const [typedSubtitle, setTypedSubtitle] = useState('');
