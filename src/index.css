@@ -1,21 +1,26 @@
 /* ==============================================
    CSS CUSTOM PROPERTIES & VARIABLES
+   Updated with Vidyaa Rambh Palette
    ============================================== */
+
 :root {
-    /* Original Color Palette - Preserved */
-    --primary-bg: #110D44; /* Deep Indigo */
-    --electric: #1C2A9E;   /* Electric Blue */
-    --cyan: #6AF2F0;       /* Bright Cyan */
-    --purple: #9A2EFE;     /* Vivid Purple */
-    --cta: #244BFF;        /* Royal Blue */
+
+    /* New Color Palette */
+    --primary-bg: #0B0B0E;   /* Deep charcoal, almost black */
+    --electric-cyan: #9A2EFF; /*Vivid Purple */
+    --surface-blue: #161F34;  /* Dark, desaturated blue */
+    --border-blue: #355A7E;   /* Muted blue-gray border */
+    --silver-chrome: #B0B8BF; /* Metallic silver-gray */
+    --text-primary: #D8F5F3;  /* Main text, off-white with cyan tint */
+    --text-dim: #9EB4B3;      /* Secondary text */
 
     /* Mapped legacy variables for app-wide usage */
     --bg: var(--primary-bg);
-    --surface: #182269; /* surface slightly lighter than bg */
-    --accent: var(--cta); /* use CTA blue as the general accent */
-    --text: #E1E8F7; /* Light Periwinkle/White */
-    --text-dim: #A9B6DF; /* dimmed neutral */
-    --border: #23308A; /* desaturated electric for borders */
+    --surface: var(--surface-blue);
+    --accent: var(--electric-cyan);
+    --text: var(--text-primary);
+    --text-dim: var(--text-dim);
+    --border: var(--border-blue);
 
     /* Enhanced spacing system */
     --space-xs: 0.25rem;
@@ -41,13 +46,16 @@
     --ease-in-quart: cubic-bezier(0.5, 0, 0.75, 0);
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 
-    /* Shadows */
+    /* Shadows (adapted to cyan glow theme) */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --shadow-glow: 0 0 20px rgba(106, 242, 240, 0.25);
-    --shadow-glow-strong: 0 0 28px rgba(36, 75, 255, 0.45);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+                 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+                 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 0 20px rgba(140, 255, 255, 0.35); /* cyan glow */
+    --shadow-glow-strong: 0 0 28px rgba(176, 184, 191, 0.45); /* chrome glow */
 
     /* Border radius */
     --radius-sm: 0.25rem;
