@@ -42,12 +42,12 @@ export default function Header() {
             <header className={classNames("fixed inset-x-0 top-0 z-50 transition", scrolled ? "bg-slate-900/70 backdrop-blur-md" : "backdrop-blur supports-[backdrop-filter]:bg-slate-900/20")}>
                 <div className="mx-auto max-w-7xl px-6">
                     <div className="flex h-16 items-center justify-between">
-                        <a href="#top" className="text-white font-extrabold tracking-tight text-xl">Vidyaarambh</a>
+                        <a href="#top" className="font-extrabold tracking-tight text-xl" style={{ color: 'var(--cyan)' }}>Vidyaarambh</a>
 
                         {/* Desktop nav */}
                         <nav className="hidden md:flex items-center gap-6">
                             {links.map(l => (
-                                <a key={l.href} href={l.href} onClick={(e) => handleNav(e, l.href)} className={classNames("transition", active === l.href ? "text-violet-400" : "text-slate-300 hover:text-white")}>{l.label}</a>
+                                <a key={l.href} href={l.href} onClick={(e) => handleNav(e, l.href)} className={classNames("transition", active === l.href ? "" : "text-slate-300 hover:text-white")} style={active === l.href ? { color: 'var(--cyan)' } : undefined}>{l.label}</a>
                             ))}
                         </nav>
 
@@ -88,7 +88,8 @@ export default function Header() {
                                     key={l.href}
                                     href={l.href}
                                     onClick={(e) => handleNav(e, l.href)}
-                                    className={classNames("px-4 py-3 transition", active === l.href ? "text-violet-400" : "text-slate-200 hover:bg-slate-800/60")}
+                                    className={classNames("px-4 py-3 transition", active === l.href ? "" : "text-slate-200 hover:bg-slate-800/60")}
+                                    style={active === l.href ? { color: 'var(--cyan)' } : undefined}
                                 >
                                     {l.label}
                                 </a>
@@ -106,4 +107,4 @@ export default function Header() {
             </div>
         </>
     );
-} 
+}

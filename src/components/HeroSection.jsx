@@ -58,7 +58,7 @@ export default function HeroSection() {
             <ThreejsCanvas />
             <Container>
                 <div className="max-w-3xl mx-auto" data-reveal>
-                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white">
+                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight" style={{ color: 'var(--cyan)' }}>
                         <span>{typedTitle}</span>
                         {(isTypingTitle && typedTitle.length < fullTitle.length) ? <span className="caret" /> : null}
                     </h1>
@@ -67,7 +67,7 @@ export default function HeroSection() {
                         {(isTypingSubtitle && typedSubtitle.length < fullSubtitle.length) ? <span className="caret" /> : null}
                     </p>
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-slate-300">
-                        <span className="inline-block rounded-full bg-slate-800/70 px-3 py-1">🗓️ Date: Sept 15, 2025</span>
+                        <span className="inline-block rounded-full px-3 py-1 border" style={{ borderColor: 'var(--purple)', color: 'var(--text)' }}>🗓 Date: Sept 15, 2025</span>
                         <span className="inline-block rounded-full bg-slate-800/70 px-3 py-1">⏰ 2:15 PM - 5:00 PM</span>
                         <span className="inline-block rounded-full bg-slate-800/70 px-3 py-1">📍 Einstein Hall</span>
                     </div>
@@ -81,4 +81,3 @@ export default function HeroSection() {
         </section>
     );
 }
-

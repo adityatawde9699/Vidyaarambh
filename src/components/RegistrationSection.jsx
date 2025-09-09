@@ -21,7 +21,7 @@ export default function RegistrationSection() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-6" data-stagger>
                     {tiers.map((tier, idx) => (
-                        <div key={idx} className={`group relative rounded-2xl border ${tier.featured ? 'border-violet-500 border-glow-strong' : 'border-slate-800'} bg-slate-900/60 p-6 shadow-xl card-hover tilt shimmer`} style={{ '--delay-index': idx }}>
+                        <div key={idx} className={`group relative rounded-2xl border ${tier.featured ? 'border-glow-strong' : 'border-slate-800'} bg-slate-900/60 p-6 shadow-xl card-hover tilt shimmer`} style={{ '--delay-index': idx }}>
                             {tier.featured && (
                                 <div className="absolute -top-3 right-3 rounded-md bg-accent px-2 py-1 text-xs font-semibold text-white shadow">Most Popular</div>
                             )}
@@ -51,4 +51,4 @@ export default function RegistrationSection() {
             </Container>
         </Section>
     );
-} 
+}
