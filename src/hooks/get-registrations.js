@@ -1,7 +1,7 @@
 
 export default async function handler(req, res) {
   // IMPORTANT: Replace this with YOUR published Google Sheet CSV URL
-  const SHEET_URL = '[https://docs.google.com/spreadsheets/d/e/UNIQUE_ID/pub?gid=SHEET_ID&single=true&output=csv](https://docs.google.com/spreadsheets/d/e/UNIQUE_ID/pub?gid=SHEET_ID&single=true&output=csv)';
+  const SHEET_URL = '(https://docs.google.com/spreadsheets/d/e/2PACX-1vRFm1CSPoYtJrnugsIWlq_TNxpj5GWSJ4VuYubwx-gDf2s4KlgLBZf4OpBuk7sE0L9U_eD743Nz94s5/pub?gid=588079090&single=true&output=csv)';
 
   try {
     const response = await fetch(SHEET_URL);

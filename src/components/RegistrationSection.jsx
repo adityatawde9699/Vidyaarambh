@@ -145,17 +145,14 @@ export default function RegistrationSection() {
 
     // Simulate fetching data from a backend on initial component mount
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            const timer = setTimeout(async () => {
-                // In a real app, you would fetch this value from a database
-                const response = await fetch('/hooks/get-registrations');
-                const fetchedCount = await response.json();
-                setRegistrationCount(fetchedCount);
-                setIsLoading(false);
-            }, 1500); // Simulate network delay
-        };
-        fetchData();
+        setIsLoading(true);
+        const timer = setTimeout(() => {
+            // In a real app, you would fetch this value from a database
+            const fetchedCount = 0; // Example fetched value
+            setRegistrationCount(fetchedCount);
+            setIsLoading(false);
+        }, 1500); // Simulate network delay
+
         return () => clearTimeout(timer); // Cleanup timer on unmount
     }, []);
 
