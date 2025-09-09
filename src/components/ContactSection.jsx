@@ -59,7 +59,7 @@ export default function ContactSection() {
     name: 'Satvik Kandarkar',
     role: 'Student Coordinator',
     phone: '+91 89993 08824',
-    image: '/images/lead-contact.png',
+    image: 'lead-contact.jpeg',
     linkedin: 'https://www.linkedin.com',
     instagram: 'https://www.instagram.com',
     badge: 'Lead Contact',

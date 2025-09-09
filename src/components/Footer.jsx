@@ -151,7 +151,7 @@ export default function Footer() {
                                         <div className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-400 to-purple-500 p-0.5">
                                             <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center overflow-hidden">
                                                 <div className="w-full h-full bg-gradient-to-br from-violet-300 to-purple-400 rounded-full flex items-center justify-center text-slate-800 font-bold text-lg">
-                                                    SK
+                                                    <img src="lead-contact.jpeg" alt="lead-contact" />
                                                 </div>
                                             </div>
                                         </div>
