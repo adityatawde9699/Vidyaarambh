@@ -65,9 +65,45 @@ export default function ContactSection() {
     badge: 'Lead Contact',
   }), []);
 
-  const coreTeam = useMemo(() => ([
-    'Akash Chaudhari', 'Kanishka Arya', 'Nandini Patil', 'Sneha Jadhav'
-  ].map((n) => ({ name: n, role: 'Core Team' }))), []);
+const coreTeam = useMemo(() => ([
+  {
+    name: 'Akash Chaudhari',
+    role: 'Core Team',
+    phone: '',
+    image: 'images/image.png',
+    linkedin: 'https://www.linkedin.com',
+    instagram: 'https://www.instagram.com',
+    badge: 'Core Team',
+  },
+  {
+    name: 'Kanishka Arya',
+    role: 'Core Team',
+    phone: '',
+    image: 'kanishka.jpeg',
+    linkedin: 'https://www.linkedin.com',
+    instagram: 'https://www.instagram.com',
+    badge: 'Core Team',
+  },
+  {
+    name: 'Nandini Patil',
+    role: 'Core Team',
+    phone: '',
+    image: 'nandini.jpeg',
+    linkedin: 'https://www.linkedin.com',
+    instagram: 'https://www.instagram.com',
+    badge: 'Core Team',
+  },
+  {
+    name: 'Sneha Jadhav',
+    role: 'Core Team',
+    phone: '',
+    image: 'sneha.jpeg',
+    linkedin: 'https://www.linkedin.com',
+    instagram: 'https://www.instagram.com',
+    badge: 'Core Team',
+  },
+]), []);
+
 
   const cards = useMemo(() => {
     const facultyCards = faculty.map((f) => ({ ...f, badge: 'Faculty' }));
