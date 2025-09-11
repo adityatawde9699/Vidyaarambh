@@ -16,12 +16,38 @@ function Container({ className = '', children }) {
 
 // --- Static Data (Moved outside component to prevent re-creation on re-renders) ---
 const TIERS_DATA = [
-    { name: 'Early Bird', price: '₹100', availability: 'For the first 50 members', rangeStart: 0, rangeEnd: 50, url: 'https://erp.mgmu.ac.in/asd_EventPublicUserMaster.htm?eventID=154', featured: true },
-    { name: 'Late Bird', price: '₹150', availability: 'For the next 30 members', rangeStart: 50, rangeEnd: 80, url: 'https://erp.mgmu.ac.in/asd_EventPublicUserMaster.htm?eventID=154', featured: false },
-    { name: 'Final Call', price: '₹200', availability: 'For the final 20 members', rangeStart: 80, rangeEnd: 100, url: 'https://erp.mgmu.ac.in/asd_EventPublicUserMaster.htm?eventID=154', featured: false },
+    {
+        name: 'Early Bird',
+        price: '₹100',
+        availability: 'For the first 50 members',
+        rangeStart: 0,
+        rangeEnd: 50,
+        url: '#google-form-100', // Replace with your actual Google Form link
+        featured: true
+    },
+    {
+        name: 'Late Bird',
+        price: '₹150',
+        availability: 'For the next 30 members',
+        rangeStart: 50,
+        rangeEnd: 80,
+        url: '#google-form-150', // Replace with your actual Google Form link
+        featured: false
+    },
+    {
+        name: 'Final Call',
+        price: '₹200',
+        availability: 'For the final 20 members',
+        rangeStart: 80,
+        rangeEnd: 100,
+        url: '#google-form-200', // Replace with your actual Google Form link
+        featured: false
+    },
 ];
 
+
 // --- The Improved PricingCard Sub-Component ---
+// Wrapped in React.memo to prevent unnecessary re-renders if props don't change.
 const PricingCard = React.memo(({ tier, registrationCount }) => {
     const state = useMemo(() => {
         if (registrationCount >= tier.rangeEnd) return 'sold-out';
@@ -32,6 +58,7 @@ const PricingCard = React.memo(({ tier, registrationCount }) => {
     const isActive = state === 'active';
     const isSoldOut = state === 'sold-out';
 
+    // Calculate progress for the visual progress bar
     const progress = useMemo(() => {
         if (isSoldOut) return 100;
         if (isActive) {
@@ -42,11 +69,26 @@ const PricingCard = React.memo(({ tier, registrationCount }) => {
         return 0;
     }, [registrationCount, tier, isActive, isSoldOut]);
 
+
     return (
-        <div className={cn('relative rounded-2xl p-6 shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 overflow-hidden', 'bg-slate-900 border', isActive ? 'border-violet-500 shadow-violet-500/20' : 'border-slate-800', isSoldOut && 'opacity-60 grayscale')}>
+        <div
+            className={cn(
+                'relative rounded-2xl p-6 shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 overflow-hidden',
+                'bg-slate-900 border',
+                isActive ? 'border-violet-500 shadow-violet-500/20' : 'border-slate-800',
+                isSoldOut && 'opacity-60 grayscale'
+            )}
+        >
+            {/* Animated Aurora Glow for active card */}
             {isActive && <div className="absolute inset-0 aurora-glow opacity-20"></div>}
+            
             <div className="relative z-10 flex flex-col h-full">
-                {tier.featured && <div className="absolute -top-3.5 right-4 rounded-full bg-violet-500 px-3 py-1 text-xs font-semibold text-white shadow-lg">Most Popular</div>}
+                {tier.featured && (
+                    <div className="absolute -top-3.5 right-4 rounded-full bg-violet-500 px-3 py-1 text-xs font-semibold text-white shadow-lg">
+                        Most Popular
+                    </div>
+                )}
+                
                 <div className="flex-grow">
                     <h3 className="text-white font-semibold text-xl">{tier.name}</h3>
                     <p className="mt-1 text-slate-400 text-sm">{tier.availability}</p>
@@ -55,13 +97,28 @@ const PricingCard = React.memo(({ tier, registrationCount }) => {
                         <span className="text-slate-300"> / person</span>
                     </div>
                 </div>
+
+                {/* Progress Bar */}
                 <div className="w-full bg-slate-700 rounded-full h-2.5 mb-4">
                     <div className="bg-violet-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
                 </div>
+
                 <div className="mt-auto">
-                    {state === 'active' && <a href={tier.url} className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold shadow-lg bg-violet-500 hover:bg-violet-600 text-white transition-all duration-200">Register Now</a>}
-                    {state === 'sold-out' && <button disabled className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold shadow-lg bg-slate-700 text-slate-400 cursor-not-allowed">Sold Out</button>}
-                    {state === 'upcoming' && <button disabled className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold bg-slate-800 text-slate-500 cursor-wait">Opens Soon</button>}
+                    {state === 'active' && (
+                        <a href={tier.url} className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold shadow-lg bg-violet-500 hover:bg-violet-600 text-white transition-all duration-200">
+                            Register Now
+                        </a>
+                    )}
+                    {state === 'sold-out' && (
+                        <button disabled className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold shadow-lg bg-slate-700 text-slate-400 cursor-not-allowed">
+                            Sold Out
+                        </button>
+                    )}
+                    {state === 'upcoming' && (
+                        <button disabled className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold bg-slate-800 text-slate-500 cursor-wait">
+                            Opens Soon
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
@@ -85,62 +142,19 @@ function CardSkeleton() {
 export default function RegistrationSection() {
     const [registrationCount, setRegistrationCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null); // State to handle errors
 
-    // Fetch live registration data from our serverless function
-    // In RegistrationSection.jsx
-
-useEffect(() => {
-    const fetchRegistrations = async () => {
+    // Simulate fetching data from a backend on initial component mount
+    useEffect(() => {
         setIsLoading(true);
-        setError(null);
-        
-        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRFm1CSPoYtJrnugsIWlq_TNxpj5GWSJ4VuYubwx-gDf2s4KlgLBZf4OpBuk7sE0L9U_eD743Nz94s5/pub?gid=588079090&single=true&output=csv';
-
-        try {
-            const response = await fetch(SHEET_URL);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            
-            const csvText = await response.text();
-            const rows = csvText.split('\n');
-
-            // If there's only a header row (or less), it means 0 registrations.
-            if (rows.length < 2) {
-                setRegistrationCount(0);
-                return; // Exit the function early
-            }
-
-            // CHANGED: We now read from rows[1] (the second row) to skip the header.
-            const dataRow = rows[1];
-            const columns = dataRow.split(',');
-
-            // Check if Column J (index 9) exists in the data row.
-            if (columns.length < 10 || !columns[9]) {
-                throw new Error('Column J (the 10th column) does not exist in the second row.');
-            }
-
-            const countValue = columns[9].trim();
-            const count = parseInt(countValue, 10);
-
-            if (isNaN(count)) {
-                throw new Error(`Could not parse a valid number from the value in Column J of the second row: "${countValue}"`);
-            }
-            
-            setRegistrationCount(count);
-
-        } catch (err) {
-            console.error("Failed to fetch registration count:", err);
-            setError("Could not load live registration data. Please check the sheet format.");
-            setRegistrationCount(0);
-        } finally {
+        const timer = setTimeout(() => {
+            // In a real app, you would fetch this value from a database
+            const fetchedCount = 50; // Example fetched value
+            setRegistrationCount(fetchedCount);
             setIsLoading(false);
-        }
-    };
+        }, 1500); // Simulate network delay
 
-    fetchRegistrations();
-}, []); // Empty dependency array means this runs once on component mount
+        return () => clearTimeout(timer); // Cleanup timer on unmount
+    }, []);
 
     return (
         <Section id="register">
@@ -151,8 +165,6 @@ useEffect(() => {
                         Seats are limited to 100 participants and pricing is tiered. Registration is first-come, first-served.
                     </p>
                 </div>
-                
-                {error && <p className="text-center text-rose-400 mb-4">{error}</p>}
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {isLoading ? (
@@ -168,8 +180,8 @@ useEffect(() => {
                     )}
                 </div>
 
-                {/* The developer control can be commented out or removed for production */}
-                {/* <div className="mt-12 flex flex-col items-center gap-4">
+                {/* Developer Control remains for easy testing */}
+                {/*<div className="mt-12 flex flex-col items-center gap-4">
                     <div className="w-full max-w-xl rounded-xl border border-slate-800 bg-slate-900/60 p-4">
                         <div className="flex items-center justify-between text-slate-300">
                             <span className="text-sm font-medium">Developer Control: Simulate Registrations</span>
@@ -190,8 +202,7 @@ useEffect(() => {
                             </p>
                         )}
                     </div>
-                </div>
-                */}
+                </div>*/}
             </Container>
         </Section>
     );
