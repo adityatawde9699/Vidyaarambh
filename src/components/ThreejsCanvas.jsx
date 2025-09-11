@@ -410,7 +410,7 @@ export default function ThreejsCanvas() {
 
         // --- Enhanced Animation Loop ---
         const animate = (timestamp) => {
-            time = timestamp * 0.001;
+           time = (timestamp || 0) * 0.001;
 
             // Smooth mouse interpolation
             mouse.lerp(mouseTarget, 0.05);
