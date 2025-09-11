@@ -22,7 +22,7 @@ const TIERS_DATA = [
         availability: 'For the first 50 members',
         rangeStart: 0,
         rangeEnd: 50,
-        url: '#google-form-100', // Replace with your actual Google Form link
+        url: 'https://erp.mgmu.ac.in/asd_EventPublicUserMaster.htm?eventID=154', // Replace with your actual Google Form link
         featured: true
     },
     {
@@ -31,7 +31,7 @@ const TIERS_DATA = [
         availability: 'For the next 30 members',
         rangeStart: 50,
         rangeEnd: 80,
-        url: '#google-form-150', // Replace with your actual Google Form link
+        url: 'https://erp.mgmu.ac.in/asd_EventPublicUserMaster.htm?eventID=154', // Replace with your actual Google Form link
         featured: false
     },
     {
@@ -40,7 +40,7 @@ const TIERS_DATA = [
         availability: 'For the final 20 members',
         rangeStart: 80,
         rangeEnd: 100,
-        url: '#google-form-200', // Replace with your actual Google Form link
+        url: 'https://erp.mgmu.ac.in/asd_EventPublicUserMaster.htm?eventID=154', // Replace with your actual Google Form link
         featured: false
     },
 ];
