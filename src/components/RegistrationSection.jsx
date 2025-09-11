@@ -88,30 +88,59 @@ export default function RegistrationSection() {
     const [error, setError] = useState(null); // State to handle errors
 
     // Fetch live registration data from our serverless function
-    useEffect(() => {
-        const fetchRegistrations = async () => {
-            setIsLoading(true);
-            setError(null);
-            try {
-                // The URL path corresponds to the file location in the /api directory
-                const response = await fetch('/api/get-registrations');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                setRegistrationCount(data.count);
-            } catch (err) {
-                console.error("Failed to fetch registration count:", err);
-                // setError("Could not load registration count. Please try again later.");
-                // Optional: You could set a default or fallback count
-                // setRegistrationCount(0);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+    // In RegistrationSection.jsx
 
-        fetchRegistrations();
-    }, []); // Empty dependency array means this runs once on component mount
+useEffect(() => {
+    const fetchRegistrations = async () => {
+        setIsLoading(true);
+        setError(null);
+        
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRFm1CSPoYtJrnugsIWlq_TNxpj5GWSJ4VuYubwx-gDf2s4KlgLBZf4OpBuk7sE0L9U_eD743Nz94s5/pub?gid=588079090&single=true&output=csv';
+
+        try {
+            const response = await fetch(SHEET_URL);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+            const csvText = await response.text();
+            const rows = csvText.split('\n');
+
+            // If there's only a header row (or less), it means 0 registrations.
+            if (rows.length < 2) {
+                setRegistrationCount(0);
+                return; // Exit the function early
+            }
+
+            // CHANGED: We now read from rows[1] (the second row) to skip the header.
+            const dataRow = rows[1];
+            const columns = dataRow.split(',');
+
+            // Check if Column J (index 9) exists in the data row.
+            if (columns.length < 10 || !columns[9]) {
+                throw new Error('Column J (the 10th column) does not exist in the second row.');
+            }
+
+            const countValue = columns[9].trim();
+            const count = parseInt(countValue, 10);
+
+            if (isNaN(count)) {
+                throw new Error(`Could not parse a valid number from the value in Column J of the second row: "${countValue}"`);
+            }
+            
+            setRegistrationCount(count);
+
+        } catch (err) {
+            console.error("Failed to fetch registration count:", err);
+            setError("Could not load live registration data. Please check the sheet format.");
+            setRegistrationCount(0);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    fetchRegistrations();
+}, []); // Empty dependency array means this runs once on component mount
 
     return (
         <Section id="register">
