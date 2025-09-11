@@ -28,7 +28,7 @@ export default function App() {
                 <AboutSection />
                 <SessionsSection />
                 
-                <PrizesSection />
+                {/* <PrizesSection /> */}
                 {/* <PerksSection /> */}
                 <RegistrationSection />
                 <PrerequisitesSection />

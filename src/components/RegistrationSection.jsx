@@ -16,9 +16,9 @@ function Container({ className = '', children }) {
 
 // --- Static Data (Moved outside component to prevent re-creation on re-renders) ---
 const TIERS_DATA = [
-    { name: 'Early Bird', price: '₹100', availability: 'For the first 50 members', rangeStart: 0, rangeEnd: 50, url: '#google-form-100', featured: true },
-    { name: 'Late Bird', price: '₹150', availability: 'For the next 30 members', rangeStart: 50, rangeEnd: 80, url: '#google-form-150', featured: false },
-    { name: 'Final Call', price: '₹200', availability: 'For the final 20 members', rangeStart: 80, rangeEnd: 100, url: '#google-form-200', featured: false },
+    { name: 'Early Bird', price: '₹100', availability: 'For the first 50 members', rangeStart: 0, rangeEnd: 50, url: 'https://erp.mgmu.ac.in/asd_EventPublicUserMaster.htm?eventID=154', featured: true },
+    { name: 'Late Bird', price: '₹150', availability: 'For the next 30 members', rangeStart: 50, rangeEnd: 80, url: 'https://erp.mgmu.ac.in/asd_EventPublicUserMaster.htm?eventID=154', featured: false },
+    { name: 'Final Call', price: '₹200', availability: 'For the final 20 members', rangeStart: 80, rangeEnd: 100, url: 'https://erp.mgmu.ac.in/asd_EventPublicUserMaster.htm?eventID=154', featured: false },
 ];
 
 // --- The Improved PricingCard Sub-Component ---
@@ -102,7 +102,7 @@ export default function RegistrationSection() {
                 setRegistrationCount(data.count);
             } catch (err) {
                 console.error("Failed to fetch registration count:", err);
-                setError("Could not load registration count. Please try again later.");
+                // setError("Could not load registration count. Please try again later.");
                 // Optional: You could set a default or fallback count
                 // setRegistrationCount(0);
             } finally {

@@ -7,7 +7,7 @@ function Heading({ title }) { return (<div className="mb-10 md:mb-12 text-center
 
 const mentors = [
   { name: 'Parth Jamkhedkar', role: 'GDG on Campus Lead"24 | Former ISP @ MGM"s JNEC | InnoHEALTH Young Innovator 2022 | Developer | Founder | Philanthropist', file: 'parth.png', fallback: 'Parth Jamkhedkar', linkedin: 'https://www.linkedin.com/in/parth-jamkhedkar' },
-  { name: 'Bhavesh Salunke', role: 'ECell-Team Member | TY-AIDS • Python • Data Science • Web Dev | Power BI • Advanced Excel | Minor in Cyber Security', file: 'image1.png', fallback: 'Bhavesh Salunke', linkedin: 'https://www.linkedin.com/in/bhavesh-salunke-7a4163283' },
+  { name: 'Mohit Bhutada', role: 'Google Student Ambassador | TY-AIDS | Blackbox AI Mavericks Club JNEC Team Member', file: 'moht.png', fallback: 'Mohit Bhutada', linkedin: 'https://www.linkedin.com/in/mohit-bhutada-144197295?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' },
   { name: 'Akash Chaudhari', role: 'TY, AIDS | NEC Finalist - 16 🏆 | Freelancer | Web-Dev TedxMGMU | ECell-JNEC Former Founder and Secretary | NSS Coordinator', file: 'image.png', fallback: 'Akash Chaudhari', linkedin: 'https://www.linkedin.com/in/akash-ch' },
 ];
 
