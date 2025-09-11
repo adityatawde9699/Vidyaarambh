@@ -16,38 +16,12 @@ function Container({ className = '', children }) {
 
 // --- Static Data (Moved outside component to prevent re-creation on re-renders) ---
 const TIERS_DATA = [
-    {
-        name: 'Early Bird',
-        price: '₹100',
-        availability: 'For the first 50 members',
-        rangeStart: 0,
-        rangeEnd: 50,
-        url: '#google-form-100', // Replace with your actual Google Form link
-        featured: true
-    },
-    {
-        name: 'Late Bird',
-        price: '₹150',
-        availability: 'For the next 30 members',
-        rangeStart: 50,
-        rangeEnd: 80,
-        url: '#google-form-150', // Replace with your actual Google Form link
-        featured: false
-    },
-    {
-        name: 'Final Call',
-        price: '₹200',
-        availability: 'For the final 20 members',
-        rangeStart: 80,
-        rangeEnd: 100,
-        url: '#google-form-200', // Replace with your actual Google Form link
-        featured: false
-    },
+    { name: 'Early Bird', price: '₹100', availability: 'For the first 50 members', rangeStart: 0, rangeEnd: 50, url: '#google-form-100', featured: true },
+    { name: 'Late Bird', price: '₹150', availability: 'For the next 30 members', rangeStart: 50, rangeEnd: 80, url: '#google-form-150', featured: false },
+    { name: 'Final Call', price: '₹200', availability: 'For the final 20 members', rangeStart: 80, rangeEnd: 100, url: '#google-form-200', featured: false },
 ];
 
-
 // --- The Improved PricingCard Sub-Component ---
-// Wrapped in React.memo to prevent unnecessary re-renders if props don't change.
 const PricingCard = React.memo(({ tier, registrationCount }) => {
     const state = useMemo(() => {
         if (registrationCount >= tier.rangeEnd) return 'sold-out';
@@ -58,7 +32,6 @@ const PricingCard = React.memo(({ tier, registrationCount }) => {
     const isActive = state === 'active';
     const isSoldOut = state === 'sold-out';
 
-    // Calculate progress for the visual progress bar
     const progress = useMemo(() => {
         if (isSoldOut) return 100;
         if (isActive) {
@@ -69,26 +42,11 @@ const PricingCard = React.memo(({ tier, registrationCount }) => {
         return 0;
     }, [registrationCount, tier, isActive, isSoldOut]);
 
-
     return (
-        <div
-            className={cn(
-                'relative rounded-2xl p-6 shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 overflow-hidden',
-                'bg-slate-900 border',
-                isActive ? 'border-violet-500 shadow-violet-500/20' : 'border-slate-800',
-                isSoldOut && 'opacity-60 grayscale'
-            )}
-        >
-            {/* Animated Aurora Glow for active card */}
+        <div className={cn('relative rounded-2xl p-6 shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 overflow-hidden', 'bg-slate-900 border', isActive ? 'border-violet-500 shadow-violet-500/20' : 'border-slate-800', isSoldOut && 'opacity-60 grayscale')}>
             {isActive && <div className="absolute inset-0 aurora-glow opacity-20"></div>}
-            
             <div className="relative z-10 flex flex-col h-full">
-                {tier.featured && (
-                    <div className="absolute -top-3.5 right-4 rounded-full bg-violet-500 px-3 py-1 text-xs font-semibold text-white shadow-lg">
-                        Most Popular
-                    </div>
-                )}
-                
+                {tier.featured && <div className="absolute -top-3.5 right-4 rounded-full bg-violet-500 px-3 py-1 text-xs font-semibold text-white shadow-lg">Most Popular</div>}
                 <div className="flex-grow">
                     <h3 className="text-white font-semibold text-xl">{tier.name}</h3>
                     <p className="mt-1 text-slate-400 text-sm">{tier.availability}</p>
@@ -97,28 +55,13 @@ const PricingCard = React.memo(({ tier, registrationCount }) => {
                         <span className="text-slate-300"> / person</span>
                     </div>
                 </div>
-
-                {/* Progress Bar */}
                 <div className="w-full bg-slate-700 rounded-full h-2.5 mb-4">
                     <div className="bg-violet-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
                 </div>
-
                 <div className="mt-auto">
-                    {state === 'active' && (
-                        <a href={tier.url} className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold shadow-lg bg-violet-500 hover:bg-violet-600 text-white transition-all duration-200">
-                            Register Now
-                        </a>
-                    )}
-                    {state === 'sold-out' && (
-                        <button disabled className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold shadow-lg bg-slate-700 text-slate-400 cursor-not-allowed">
-                            Sold Out
-                        </button>
-                    )}
-                    {state === 'upcoming' && (
-                        <button disabled className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold bg-slate-800 text-slate-500 cursor-wait">
-                            Opens Soon
-                        </button>
-                    )}
+                    {state === 'active' && <a href={tier.url} className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold shadow-lg bg-violet-500 hover:bg-violet-600 text-white transition-all duration-200">Register Now</a>}
+                    {state === 'sold-out' && <button disabled className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold shadow-lg bg-slate-700 text-slate-400 cursor-not-allowed">Sold Out</button>}
+                    {state === 'upcoming' && <button disabled className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold bg-slate-800 text-slate-500 cursor-wait">Opens Soon</button>}
                 </div>
             </div>
         </div>
@@ -142,19 +85,33 @@ function CardSkeleton() {
 export default function RegistrationSection() {
     const [registrationCount, setRegistrationCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null); // State to handle errors
 
-    // Simulate fetching data from a backend on initial component mount
+    // Fetch live registration data from our serverless function
     useEffect(() => {
-        setIsLoading(true);
-        const timer = setTimeout(() => {
-            // In a real app, you would fetch this value from a database
-            const fetchedCount = 0; // Example fetched value
-            setRegistrationCount(fetchedCount);
-            setIsLoading(false);
-        }, 1500); // Simulate network delay
+        const fetchRegistrations = async () => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                // The URL path corresponds to the file location in the /api directory
+                const response = await fetch('/api/get-registrations');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setRegistrationCount(data.count);
+            } catch (err) {
+                console.error("Failed to fetch registration count:", err);
+                setError("Could not load registration count. Please try again later.");
+                // Optional: You could set a default or fallback count
+                // setRegistrationCount(0);
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
-        return () => clearTimeout(timer); // Cleanup timer on unmount
-    }, []);
+        fetchRegistrations();
+    }, []); // Empty dependency array means this runs once on component mount
 
     return (
         <Section id="register">
@@ -165,6 +122,8 @@ export default function RegistrationSection() {
                         Seats are limited to 100 participants and pricing is tiered. Registration is first-come, first-served.
                     </p>
                 </div>
+                
+                {error && <p className="text-center text-rose-400 mb-4">{error}</p>}
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {isLoading ? (
@@ -180,8 +139,8 @@ export default function RegistrationSection() {
                     )}
                 </div>
 
-                {/* Developer Control remains for easy testing */}
-                <div className="mt-12 flex flex-col items-center gap-4">
+                {/* The developer control can be commented out or removed for production */}
+                {/* <div className="mt-12 flex flex-col items-center gap-4">
                     <div className="w-full max-w-xl rounded-xl border border-slate-800 bg-slate-900/60 p-4">
                         <div className="flex items-center justify-between text-slate-300">
                             <span className="text-sm font-medium">Developer Control: Simulate Registrations</span>
@@ -203,6 +162,7 @@ export default function RegistrationSection() {
                         )}
                     </div>
                 </div>
+                */}
             </Container>
         </Section>
     );
